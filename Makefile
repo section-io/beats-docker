@@ -77,7 +77,7 @@ $(BEATS): venv
 	  -D url=$(DOWNLOAD_URL_ROOT)/$@/$@-$(ELASTIC_VERSION)-linux-x86_64.tar.gz \
 	  -D image_flavor=full \
 	  templates/Dockerfile.j2 > build/$@/Dockerfile-full
-	docker build $(DOCKER_FLAGS) -f build/$@/Dockerfile-full --tag=$(REGISTRY)/beats/$@:$(VERSION_TAG) build/$@
+	#docker build $(DOCKER_FLAGS) -f build/$@/Dockerfile-full --tag=$(REGISTRY)/beats/$@:$(VERSION_TAG) build/$@
 
 	jinja2 \
 	  -D beat=$@ \
@@ -85,7 +85,7 @@ $(BEATS): venv
 	  -D url=$(DOWNLOAD_URL_ROOT)/$@/$@-oss-$(ELASTIC_VERSION)-linux-x86_64.tar.gz \
 	  -D image_flavor=oss \
 	  templates/Dockerfile.j2 > build/$@/Dockerfile-oss
-	docker build $(DOCKER_FLAGS) -f build/$@/Dockerfile-oss --tag=$(REGISTRY)/beats/$@-oss:$(VERSION_TAG) build/$@
+	#docker build $(DOCKER_FLAGS) -f build/$@/Dockerfile-oss --tag=$(REGISTRY)/beats/$@-oss:$(VERSION_TAG) build/$@
 
 local-httpd:
 	docker run --rm -d --name=$(HTTPD) --network=host \
