@@ -1,3 +1,14 @@
+## section-io specifics
+We forked a version of filebeats at v6.2.3.  In order to build an equivalent docker image
+we need to also use the Dockerfile that created the v6.2.3 that Elastic produces.
+
+The code below shows how to go about generating the Dockerfile along with the changes
+to a number of files in this fork.
+
+```
+
+```
+
 ## Description
 
 This repository contains the official [Beats][beats] Docker images from
