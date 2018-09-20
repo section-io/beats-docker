@@ -1,5 +1,20 @@
 FROM python:3.7.0-slim-stretch
 
+WORKDIR /tmp
+ADD bin ./bin
+ADD build ./build
+ADD templates ./templates
+ADD tests ./tests
+ADD beats.txt Makefile requirements.txt version.json ./
 
-ADD requirements.txt /
 RUN pip3 install -r requirements.txt
+RUN pip3 install virtualenv
+
+# Need `make` installed
+RUN apt-get update
+RUN apt-get install -y build-essential
+
+# actually generate the Dockerfile via a `make` target
+RUN make images
+
+CMD ["cat", "/tmp/build/filebeat/Dockerfile-full"]
